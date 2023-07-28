@@ -3,7 +3,7 @@ import React, { createContext, useState } from "react";
 export const CartContext = createContext();
 
 export function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [ cart, setCart ] = useState([]);
 
   const addToCart = (product) => {
     //validar si el producto ya esta en el carrito
@@ -11,7 +11,7 @@ export function CartProvider({ children }) {
 
     if (productInCartIndex >= 0) {
       const newCart = structuredClone(cart);
-      newCart[productInCartIndex].quantity += 1;
+      newCart[ productInCartIndex ].quantity += 1;
       return setCart(newCart);
     }
     // si no esta en el carrito, agregarlo
@@ -28,13 +28,13 @@ export function CartProvider({ children }) {
     setCart((prevent) => prevent.filter((item) => item.id !== product.id));
   };
 
-  const cleartCart = () => {
+  const clearCart = () => {
     setCart([]);
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, cleartCart, removeFromCart }}
+      value={{ cart, addToCart, clearCart, removeFromCart }}
     >
       {children}
     </CartContext.Provider>
